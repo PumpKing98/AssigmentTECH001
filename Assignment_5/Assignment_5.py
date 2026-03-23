@@ -12,7 +12,7 @@ print("5 số lớn nhất đã nhập là:", top)
 
 #2
 import math
-n = int(input("Nhập một số nguyên dương: "))
+n = int(input("Nhập một số nguyên tố: "))
 prime = True
 
 if n < 2:
