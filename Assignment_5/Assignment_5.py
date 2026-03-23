@@ -53,10 +53,11 @@ print("Tổng của các số trong danh sách là:", ket_qua)
 def loc_so_chan(danh_sach):
     danh_sach_moi = []
     for n in danh_sach:
-        if n % 2 == 0:
+        if float(n) % 2 == 0:
             danh_sach_moi.append(n)
     return danh_sach_moi
 
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+nhap_2 = input("Nhập dãy số đi :")
+numbers = nhap_2.split()
 ket_qua = loc_so_chan(numbers)
 print("Các số chẵn trong danh sách là:", ket_qua)
