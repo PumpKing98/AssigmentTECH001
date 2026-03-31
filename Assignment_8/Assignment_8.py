@@ -55,5 +55,62 @@ while True:
     tiep_tuc = input(" Bạn muốn đi tiếp không ( Enter để dừng):")
     if tiep_tuc == {}:
         break
+class Car:
+    def __init__(self, registration_number, max_speed):
+        self.registration_number = registration_number
+        self.max_speed = max_speed
+        self.current_speed = 0
+        self.travelled_distance = 0
 
+    def accelerate(self, change_in_speed):
+        self.current_speed += change_in_speed
+        if self.current_speed > self.max_speed:
+            self.current_speed = self.max_speed
+        if self.current_speed < 0:
+            self.current_speed = 0
+
+    def drive(self, hours):
+        self.travelled_distance += self.current_speed * hours
+class Race:
+    def __init__(self, name, distance_km, cars):
+        self.name = name
+        self.distance_km = distance_km
+        self.cars = cars
+
+    def hour_passes(self):
+        for car in self.cars:
+            speed_change = random.randint(-10, 15)
+            car.accelerate(speed_change)
+            car.drive(1)
+
+    def print_status(self):
+        print(f"\n{'='*20} {self.name} {'='*20}")
+        header = f"{'Biển số':<12} | {'Tốc độ tối đa':<15} | {'Tốc độ hiện tại':<15} | {'Quãng đường':<15}"
+        print(header)
+        print("-" * len(header))
+        for car in self.cars:
+            print(f"{car.registration_number:<12} | {car.max_speed:<15} | {car.current_speed:<15} | {car.travelled_distance:<12.1f} km")
+        print("-" * len(header))
+
+    def race_finished(self):
+        for car in self.cars:
+            if car.travelled_distance >= self.distance_km:
+                return True
+        return False
+if __name__ == "__main__":
+    all_cars = []
+    for i in range(1, 11):
+        reg_num = f"ABC-{i}"
+        max_v = random.randint(100, 200)
+        all_cars.append(Car(reg_num, max_v))
+    derby_race = Race("Grand Demolition Derby", 8000, all_cars)
+    hours_count = 0
+    while not derby_race.race_finished():
+        derby_race.hour_passes()
+        hours_count += 1
+        if hours_count % 10 == 0:
+            print(f"\nĐã qua {hours_count} giờ đua.")
+            derby_race.print_status()
+    print(f"\n kết thúc sau {hours_count} giờ")
+    derby_race.print_status()
 
