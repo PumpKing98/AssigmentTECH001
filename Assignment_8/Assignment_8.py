@@ -53,7 +53,7 @@ while True:
     which_floor = int(input("Tầng bạn muốn đi:")) 
     my_building.run_elevator(which_elevator, which_floor)
     tiep_tuc = input(" Bạn muốn đi tiếp không ( Enter để dừng):")
-    if tiep_tuc == {}:
+    if tiep_tuc == (""):
         break
 class Car:
     def __init__(self, registration_number, max_speed):
